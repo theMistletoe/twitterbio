@@ -11,23 +11,27 @@ const openai = new OpenAIApi(config);
 export const runtime = 'edge';
 
 export async function POST(req: Request) {
-  const { vibe, bio } = await req.json();
+  const { thinking } = await req.json();
+  console.log(thinking);
+  
 
   // Ask OpenAI for a streaming completion given the prompt
   const response = await openai.createChatCompletion({
-    model: 'gpt-3.5-turbo',
+    model: 'gpt-4',
+    temperature: 0.7,
     stream: true,
     messages: [
       {
+        role: 'system',
+        content: `あなたは提示された文章の文脈や構造を理解し、理解しやすい形に構造化・整理することが得意です。出力するのはMarkdownのプレーンテキストです。`,
+      },
+      {
         role: 'user',
-        content: `Generate 2 ${vibe} twitter biographies with no hashtags and clearly labeled "1." and "2.". ${
-          vibe === 'Funny'
-            ? "Make sure there is a joke in there and it's a little ridiculous."
-            : null
-        }
-          Make sure each generated biography is less than 160 characters, has short sentences that are found in Twitter bios, and base them on this context: ${bio}${
-          bio.slice(-1) === '.' ? '' : '.'
-        }`,
+        content: `以下の文章の文脈を汲み取り、誤字脱字と推測される部分を適切に修正した上で、人間が理解しやすい形で構造化したMarkdown形式で出力してください。出力するのはあなたが整理したMarkdownプレーンテキストのみにしてください。「${thinking}」`,
+      },
+      {
+        role: 'user',
+        content: `===以下が出力結果===`,
       },
     ],
   });

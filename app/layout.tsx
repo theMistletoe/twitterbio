@@ -6,7 +6,7 @@ const title = 'ゴムのアヒルちゃん';
 const description = 'AIでラバーダッキングをしよう!';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://twitterbio.io'),
+  metadataBase: new URL('https://rubberduck-copilot.vercel.app'),
   title,
   description,
   openGraph: {

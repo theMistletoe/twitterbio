@@ -156,6 +156,7 @@ export default function Page() {
                 </div>
                 <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
                   {generatedBios}
+                  {/* TODO: ここをマークダウンに対応させる */}
                 </div>
               </>
             ) : <p>うーん…ちょっとまってね…</p>}

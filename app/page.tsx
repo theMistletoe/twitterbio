@@ -101,6 +101,9 @@ export default function Page() {
               >
               書きおこしを終わる
             </button>
+            <div>
+              <p className='mt-2 text-small text-gray-400'>※PCの方が音声認識の精度が高いです</p>
+            </div>
           </>
         )}
         {status === 'typing' && (

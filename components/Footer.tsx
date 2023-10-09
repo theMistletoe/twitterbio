@@ -35,7 +35,7 @@ export default function Footer() {
           </svg>
         </Link>
         <Link
-          href="https://github.com/theMistletoe"
+          href="https://github.com/theMistletoe/rubberduck"
           className="group"
           aria-label="GitHub"
         >

@@ -9,6 +9,8 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { useChat } from 'ai/react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export default function Page() {
   const [status, setStatus] = useState<'init'|'listning'|'typing'|'result'>('init')
@@ -70,7 +72,7 @@ export default function Page() {
   return (
     <div className="flex max-w-5xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <Header />
-      <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 mt-12 sm:mt-20 max-w-xl">
+      <main className="flex flex-1 w-full flex-col items-center justify-center px-4 mt-12 sm:mt-20 max-w-xl">
         <Image
           width={200}
           height={200}
@@ -148,15 +150,14 @@ export default function Page() {
               <>
                 <div>
                   <h2
-                    className="sm:text-4xl text-3xl font-bold text-slate-900 mx-auto"
+                    className="text-center text-slate-900 mx-auto"
                     ref={bioRef}
                     >
                     あなたの考えを整理してみたよ！
                   </h2>
                 </div>
                 <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
-                  {generatedBios}
-                  {/* TODO: ここをマークダウンに対応させる */}
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} className='markdown'>{generatedBios}</ReactMarkdown>
                 </div>
               </>
             ) : <p>うーん…ちょっとまってね…</p>}

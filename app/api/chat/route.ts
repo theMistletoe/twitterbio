@@ -16,7 +16,7 @@ export async function POST(req: Request) {
 
   // Ask OpenAI for a streaming completion given the prompt
   const response = await openai.createChatCompletion({
-    model: 'gpt-4o',
+    model: 'o1-preview',
     temperature: 0.7,
     stream: true,
     messages: [
